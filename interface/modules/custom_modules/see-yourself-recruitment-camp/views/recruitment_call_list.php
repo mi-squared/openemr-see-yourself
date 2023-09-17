@@ -24,13 +24,13 @@ use Mi2\SeeYourselfCampaign\Bootstrap;
 $lname = $_POST['lname'] ?? null;
 $fname = $_POST['fname'] ?? null;
 $pid = $_POST['pid'] ?? null;
-$css = Bootstrap::getModuleDir()."assets/sms_log_report.css";
+
 ?>
 <html>
 <head>
 
     <link rel="stylesheet" href="<?php echo $GLOBALS['css_header'];?>" type="text/css">
-    <link rel="stylesheet" href="<?php echo $css;?>" type="text/css">
+    <link rel="stylesheet" href="../assets/sms_log_report.css" type="text/css">
     <title><?php xl('Call List: ','e'); ?></title>
     <?php Header::setupHeader(['opener', 'report-helper', 'datatables', 'datatables-buttons',
         'datatables-buttons-html5', 'datetime-picker', 'dialog', 'jquery', 'common']);
