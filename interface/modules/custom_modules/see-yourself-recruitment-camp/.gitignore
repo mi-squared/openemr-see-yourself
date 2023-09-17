@@ -1,0 +1,18 @@
+
+# Created by .ignore support plugin (hsz.mobi)
+import-config.php
+# ccda service build
+ccdaservice/node_modules
+
+# dev editor configs
+/.idea/*
+.idea/*
+/.vscode/*
+/nbproject/*
+.DS_Store
+.buildpath
+.project
+.settings
+
+# testing
+.phpunit.result.cache

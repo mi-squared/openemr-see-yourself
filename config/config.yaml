@@ -117,6 +117,12 @@ assets:
     datatables:
         basePath: '%assets_static_relative%/datatables.net/js/'
         script: jquery.dataTables.min.js
+    datatables-buttons:
+        basePath: '%assets_static_relative%/datatables.net-buttons/js/'
+        script: dataTables.buttons.min.mjs
+    datatables-buttons-html5:
+        basePath: '%assets_static_relative%/ouanalyse-datatables.net-buttons-html5/js/'
+        script: dataTables.buttons.js
     datatables-colreorder:
         basePath: '%assets_static_relative%'
         link: /datatables.net-colreorder-dt/css/colReorder.dataTables.min.css

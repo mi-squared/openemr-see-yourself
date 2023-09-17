@@ -77,10 +77,10 @@
         "waryway/php-traits-library": "1.0.4",
         "yubico/u2flib-server": "1.0.2",
         "twilio/sdk": "6.44.3",
-
         "mi-squared/oe-patient-privacy": "dev-master",
         "mi-squared/oe-import": "dev-master",
-        "mi-squared/see-yourself-health-importer": "dev-master"
+        "mi-squared/see-yourself-health-importer": "dev-master",
+        "mi-squared/see-yourself-recruitment-camp": "dev-master"
     },
     "config": {
         "platform": {
@@ -112,6 +112,10 @@
         {
             "type" : "git",
             "url" : "https://github.com/mi-squared/see-yourself-health-importer.git"
+        },
+        {
+            "type" : "vcs",
+            "url" : "git@github.com:mi-squared/oe-see-yourself-recruitment-camp.git"
         },
         {
             "type" : "git",

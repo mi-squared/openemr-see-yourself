@@ -1,0 +1,162 @@
+/* Add your CSS styles here */
+.main {
+    width: 94%;
+    padding: 5px;
+    border: 4px solid;
+}
+
+.contact-list-table {
+    float: left;
+    width: 40%;
+    table-layout: fixed;
+    border: 3px solid;
+}
+
+.contact-list-table caption,
+.response-list-table caption {
+    text-align: center;
+}
+
+.contact-list-table th,
+.contact-list-table td,
+.response-list-table th,
+.response-list-table td {
+    padding: 5px;
+    border: 3px solid;
+}
+
+.default-color {
+    color: #000; /* Default color */
+}
+
+.rel1-color {
+    color: #ff0000; /* Red for Relation 1 */
+}
+
+.rel2-color {
+    color: #0a5d0a; /* Green for Relation 2 */
+}
+
+.rel3-color {
+    color: #8080d0; /* Blue for Relation 3 */
+}
+
+.rel4-color {
+    color: #7c287c; /* Magenta for Relation 4 */
+}
+/* Reset some default styles */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Define global styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.content {
+    max-width: 1200px;
+    margin: 20px 0;
+    padding: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    margin-bottom: 2px;
+    background-color: #f0f0f0; /* Light gray background for the form */
+    padding: 1px; /* Add padding to the form */
+}
+
+
+
+/* Define the grid for the form */
+.grid-form {
+    display: grid;
+    grid-template-columns: 10em repeat(3, 1fr); /* 5 columns */
+    grid-template-rows: repeat(5, auto); /* 5 rows */
+    grid-row-gap: 5px; /* Gap between grid items */
+    grid-column-gap: 0px;
+}
+
+/* Style grid items */
+.grid-item {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding: 1px;
+    background-color: #fff; /* White background for grid items (fields) */
+}
+
+.grid-title {
+    font-weight: bold;
+}
+
+input[type="date"] {
+    width: 100%;
+}
+
+.clear-button {
+    padding: 4px 10px;
+    cursor: pointer;
+}
+
+.clear-form-button {
+    padding: 4px 10px;
+    cursor: pointer;
+}
+
+.send-unsent-button {
+    padding: 4px 10px;
+    cursor: pointer;
+}
+
+#show_sms_table{
+    padding: 1px;
+}
+
+.date_search{
+    width:10em;
+}
+
+.pid_search{
+    width:3em;
+}
+
+.pc_title_search{
+    width:14em;
+}
+
+.full_name_search{
+    width:20em;
+}
+
+.phNumber_search{
+    width:12em;
+}
+
+.form_date{
+    width:10em;
+    margin-left:1em!important;
+}
+
+.form_name{
+    width:20em;
+    margin-left:1em!important;
+}
+
+.form_pid{
+    width:10em;
+    margin-left:1em!important;
+}

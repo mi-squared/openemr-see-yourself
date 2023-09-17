@@ -1,0 +1,16 @@
+{
+    "name": "mi-squared/see-yourself-recruitment-camp",
+    "description": "Implementation of mi2 importer for See Yourself Health",
+    "type": "openemr-module",
+    "authors": [
+        {
+            "name": "Daniel Pflieger",
+            "email": "daniel@mi-squared.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {"Mi2\\SeeYourselfCampaign\\": "src/"}
+    }
+}
