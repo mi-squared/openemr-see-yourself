@@ -43,172 +43,142 @@ $pid = $_POST['pid'] ?? null;
         //This is for the child row that displays the response
         function format ( d ) {
             // `d` is the original data object for the row
-            var rowColor;
+            let rowColor;
 
 
 
-            var rel1color ="rgb(133, 66, 4)";
-            var rel2color ="rgba(6, 6, 172, 0.83)";
-            var rel3color="rgba(13, 71, 10, 0.83)";
-            var rel4color ="rgba(246, 23, 216, 0.83)";
-            var defaultcolor = "Black";
+            let rel1color ="rgb(133, 66, 4)";
+            let rel2color ="rgba(6, 6, 172, 0.83)";
+            let rel3color="rgba(13, 71, 10, 0.83)";
+            let rel4color ="rgba(246, 23, 216, 0.83)";
+            let defaultcolor = "Black";
+          ;
+
+
+            let response = `
+    <div class="ptinfo">
+        <!-- First Row -->
+        <div class="grid-item">
+            <button type="button" style="padding: 4px 10px;" align="left" id="call_button" class="call_button"> Call </button>
+        </div>
+        <div class="grid-item">
+            <label for="callStatus" class="dropdown-label">Call Status</label>
+        </div>
+        <div class="grid-item">
+            <label for="qualifications" class="dropdown-label">Qualifications</label>
+        </div>
+        <div class="grid-item">
+            <label for="Notes" class="label">Notes</label>
+        </div>
+        <div class="grid-item">
+            <label for="meetsQual" class="dropdown-label">Meets Qualifications</label>
+        </div>
+        <div class="grid-item">
+            <label for="nextStep" class="dropdown-label">Next Step</label>
+        </div>
+        <div class="grid-item">
+            <button type="button" class="save_button" style="padding: 4px 10px;" align="left" id="save_record"> Save </button>
+        </div>
+        <div class="grid-item">
+            <button type="button" class="undo_button" style="padding: 4px 10px;" align="left" id="UnDo"> Undo </button>
+        </div>
+
+        <!-- Second Row -->
+        <div class="grid-item"></div>
+        <div class="grid-item">
+            <select id="callStatus" name="callStatus">
+                <option value="na">N/A</option>
+                <option value="LVM">LVM</option>
+                <option value="Contact">Contact</option>
+                <option value="Refused">Refused</option>
+            </select>
+        </div>
+        <div class="grid-item">
+            <select id="qualifications" name="qualifications">
+                <option value="q1">Interest</option>
+                <option value="q2">Willing and Able</option>
+                <option value="q3">Meets Health Criteria</option>
+                <option value="q4">Commits to Program</option>
+            </select>
+        </div>
+        <div class="grid-item">
+            <input type="text" class="form_name" name="notes" id="notes" placeholder="Last" value="">
+        </div>
+        <div class="grid-item">
+            <select id="meetsQual" name="meetsQual">
+                <option value="q1">Yes</option>
+                <option value="q2">No</option>
+                <option value="q3">No Decision Yet</option>
+            </select>
+        </div>
+        <div class="grid-item">
+            <select id="nextStep" name="nextStep">
+                <option value="q1">Move to Program</option>
+                <option value="q2">Wait for more info</option>
+                <option value="q3">Patient is DQ'd</option>
+            </select>
+        </div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+
+
+        <div class="ptCallHist">
+            <div class="title" style="grid-column: 1 / span 4; text-align: center;">Call History</div>
+            <div class="title">Date</div>
+            <div class="title">Agent</div>
+            <div class="title">Result</div>
+            <div class="title">Status</div>
+            <div class="data">Date</div>
+            <div class="data">Agent</div>
+            <div class="data">Result</div>
+            <div class="data">Status</div>
+            <div class="data">Date</div>
+            <div class="data">Agent</div>
+            <div class="data">Result</div>
+            <div class="data">Status</div>
+            <div class="data">Date</div>
+            <div class="data">Agent</div>
+            <div class="data">Result</div>
+            <div class="data">Status</div>
+        </div>
+
+        <div class="ptQual">
+            <div class="title" style="grid-column: 1 / span 4; text-align: center;">Qualifying Criteria</div>
+            <div class = "data">
+                <ul>
+                    <li><input type="checkbox" disabled checked> Criteria 1</li>
+                    <li><input type="checkbox" disabled checked> Criteria 2</li>
+                    <li><input type="checkbox" disabled checked> Criteria 3</li>
+                </ul>
+            </div>
+        </div>
+         <div class="ptNotes">
+            <div class="title" style="grid-column: 1 / span 6; text-align: center;">Notes</div>
+            <div> Clicking on the patients name will open their demographics window.  If
+                you would like we can automatically open a pts window using the call button
+            </div>
+        </div>
+
+          <div class="ptCallHist">
+            <div class="title" style="grid-column: 1 / span 4; text-align: center;">More Stuff</div>
+            <div class = "data">
+            <br>???<br>???<br>???
+            </div>
+        </div>
+
+        <div class="ptQual">
+            <div class="title" style="grid-column: 1 / span 6; text-align: center;">More Stuff</div>
+            <div class = "data">
+            <br>???<br>???<br>???
+            </div>
+        </div>
 
 
 
-            var response =
-                '<table id="main_table" class="main" align="center">' +
-                '<tr><td>' +
-                '<div id="contact_list_div">' +
-                '<table class="formtable sms_report contact-list-table" id="contact_list">' +
-                '<caption><h3>Contact List</h3></caption>' +
-                '<tr>' +
-                '<th>Relation</th>' +
-                '<th>Name</th>' +
-                '<th>HIPAA</th>' +
-                '<th>Contact #</th>' +
-                '</tr>' +
-                '<tr class="default-color">' +
-                '<td>Patient</td>' +
-                '<td>' + d.fname + ' ' + d.lname + '</td>' +
-                '<td>' + d.hipaa_allowsms + '</td>' +
-                '<td>' + d.phone_cell + '</td>' +
-                '</tr>' +
-                '<tr class="rel1-color">' +
-                '<td>Rel 1</td>' +
-                '<td>' + d.relation1name + '</td>' +
-                '<td>' + d.relation1sms + '</td>' +
-                '<td>' + d.relation1cell + '</td>' +
-                '</tr>' +
-                '<tr class="rel2-color">' +
-                '<td>Rel 2</td>' +
-                '<td>' + d.relation2name + '</td>' +
-                '<td>' + d.relation2sms + '</td>' +
-                '<td>' + d.relation2cell + '</td>' +
-                '</tr>' +
-                '<tr class="rel3-color">' +
-                '<td>Rel 3</td>' +
-                '<td>' + d.relation3name + '</td>' +
-                '<td>' + d.relation3sms + '</td>' +
-                '<td>' + d.relation3cell + '</td>' +
-                '</tr>' +
-                '<tr class="rel4-color">' +
-                '<td>Rel 4</td>' +
-                '<td>' + d.relation4name + '</td>' +
-                '<td>' + d.relation4sms + '</td>' +
-                '<td>' + d.relation4cell + '</td>' +
-                '</tr>' +
-                '</table>' +
-                '</div>';
+   </div>
+`;
 
-            response +=
-                '<table class="formtable compact sms_report response-list-table" id="response_list">' +
-                '<caption><h3>Recent Messages</h3></caption>' +
-                '<tr>' +
-                '<th>Date</th>' +
-                '<th>From</th>' +
-                '<th>To</th>' +
-                '<th>Message</th>' +
-                '<th></th>' +
-                '</tr>';
-            ;
-
-            //here we insert the responses:
-            var textResponse = d.messages;
-
-            textResponse.forEach(function(item) {
-                var decoded;
-
-                if(/^\d+$/.test(item.from) && /^\d+$/.test(item.to)) {
-                    var a = item.from;
-                    item.from = [a.slice(0, 1) + '-', a.slice(1, 4) + '-', a.slice(4, 7) + '-', a.slice(7, 11)].join()
-                        .replace(/,/g, '');
-
-                    a = item.to;
-                    item.to = [a.slice(0, 1) + '-', a.slice(1, 4) + '-', a.slice(4, 7) + '-', a.slice(7, 11)].join().replace(/,/g, '');
-                }else{
-
-
-                }
-
-                try {
-
-                    var str = item.text;
-                    var uri_encoded = str.replace(/%([^\d].)/, "%25$1");
-
-                    var text = decodeURIComponent(uri_encoded);
-                    console.log("dec" + text);
-                }catch{
-                    var text = item.text
-
-
-                    text =    text.replace(/%00/g, '');
-                    text =    text.replace(/%20/g, ' ');
-
-                    text = "Error parsing message, message may not be complete <br>" + text;
-
-                }
-
-
-
-
-                if(item.to.includes("1sms")){
-
-                    rowColor=rel1color;
-
-                }else if(item.to.includes("2sms")){
-
-                    rowColor=rel2color;
-
-                }else if(item.to.includes("3sms")){
-
-                    rowColor=rel3color;
-                }else if(item.to.includes("4sms")){
-
-                    rowColor=rel4color;
-
-                }else{
-
-                    rowColor = defaultcolor;
-                }
-
-
-
-
-
-                response += '' +
-                    '<tr role="row" class="shown" style="color:' + rowColor + '">' +
-                    '<td class="smsdateTime">' + item.time + ' </td>' +
-                    '<td class="smsfrom" > ' + item.from + ' </td>' +
-                    '<td class="smsto"> ' + item.to + ' </td>' +
-                    '<td class="smsmessage"> ' + text + ' </td> ' +
-                    '<td class="smsmessageID" hidden>' + item.messageId +'</td>' +
-                    '<td class="smsreplyMessageID" hidden>' + item.replyMessageId +'</td>' +
-                    '<td class="smsptname" hidden>' + d.fname + " " + d.lname +'</td>' +
-                    '<td class="pid" hidden>' + d.pid +'</td>' +
-                    '<td>';
-                if(! item.from.match(/[a-z]/i)) {
-
-                    response += '<button style="padding: 4px 10px;" align="left" class="reply"> Reply </button>';
-                }
-
-                response += '</td>' + '</tr>';
-
-
-
-
-
-            });
-
-
-
-
-
-
-            response +='</table>';
-            '</td></table>';
-
-
-
+            response += '</div>'; //end of ptinfo grid:Parent grid
 
             return response;
 
@@ -217,13 +187,14 @@ $pid = $_POST['pid'] ?? null;
 
         $(document).ready(function() {
 
-            var oTable;
+            let oTable;
 
             oTable=$('#show_sms_table').DataTable({
                 dom: 'Bfrtip',
                 autoWidth: true,
                 scrollY: false,
                 fixedHeader: true,
+                stripeClasses: ['odd-row', 'even-row'],
                 buttons: [
                     'copy', 'excel', 'pdf', 'csv'
                 ],
@@ -259,6 +230,7 @@ $pid = $_POST['pid'] ?? null;
 
                 "columnDefs": [
                     { className: "details-control", targets: "_all" },
+                    { className: "ptN compact details-control", "targets": [ 2 ] },
                 ],
                 "rowCallback": function( row, data ) {
 
@@ -278,28 +250,28 @@ $pid = $_POST['pid'] ?? null;
 
             $('#column0_lastUpdate_search_show_sms_table').on( 'keyup', function () {
                 oTable
-                    .columns( 1 )
+                    .columns( 0 )
                     .search( this.value)
                     .draw();
             } );
 
             $('#column1_pid_search_show_sms_table').on( 'keyup', function () {
                 oTable
+                    .columns( 1 )
+                    .search( this.value )
+                    .draw();
+            } );
+
+            $('#column2_name_search_show_sms_table').on( 'keyup', function () {
+                oTable
                     .columns( 2 )
                     .search( this.value )
                     .draw();
             } );
 
-            $('#column2_eventDate_search_show_sms_table').on( 'keyup', function () {
+            $('#column3_cell_search_show_sms_table').on( 'keyup', function () {
                 oTable
                     .columns( 3 )
-                    .search( this.value )
-                    .draw();
-            } );
-
-            $('#column3_pcTitle_search_show_sms_table').on( 'keyup', function () {
-                oTable
-                    .columns( 4 )
                     .search( this.value )
                     .draw();
             } );
@@ -313,68 +285,78 @@ $pid = $_POST['pid'] ?? null;
             // Todo: add ability to respond
             // Todo: make sure patient notes includes these interactions, which I think they already do
             $('#show_sms_table tbody').on('click', 'td.details-control', function () {
-                var tr = $(this).closest('tr');
-                var row = oTable.row( tr );
+                let tr = $(this).closest('tr');
+                let row = oTable.row(tr);
+                let rowIndex = tr.index(); // Get the index of the clicked row
 
-                if ( row.child.isShown() ) {
-                    // This row is already open - close it
+                // Close all other rows and reset their CSS properties
+                $('#show_sms_table tbody dt-hasChild tr.shown').each(function () {
+                    let otherRow = oTable.row(this);
+                    otherRow.child.hide();
+                    $(this).removeClass('shown');
+                    // Reset CSS properties for other rows
+                    $(this).css({
+                        'background-color': '',    // Reset background color
+                        'margin-bottom': ''        // Reset margin
+                    });
+                });
+
+                if (row.child.isShown()) {
+                    console.log("Clicked is shown");
+                    // This row is already open - close it and reset CSS properties
                     row.child.hide();
                     tr.removeClass('shown');
-                }
-                else {
-                    // Open this row
-                    row.child( format(row.data()) ).show();
-
-
-
-                    $('.reply').click(function(){
-
-                        var messageId = $(this).closest('tr').find('.smsmessageID').text();
-                        var replyMessageId = $(this).closest('tr').find('.smsreplyMessageID').text();
-                        var patient=$(this).closest('tr').find('.smsptname').text();
-
-                        //pull the number we are sending to from the 'from' field
-                        var sendto=$(this).closest('tr').find('.smsfrom').text();
-                        var pid=$(this).closest('tr').find('.pid').text();
-
-                        var URL = encodeURI( "<?php echo $GLOBALS['webroot'] ?>" +
-                            "/modules/sms_email_reminder/views/sms_respond_view.php?" +
-                            "patient="+patient+"&to="+sendto+";"+"&replyID="+ replyMessageId +
-                            "&pid=" + pid);
-                        dlgopen(URL, '_blank', 800, 400);
-
-
-
-
-
+                    tr.css({
+                        'background-color': '',    // Reset background color
+                        'margin-bottom': ''        // Reset margin
                     });
+
+                    // Reset the top margin for the following row
+                    let nextRow = $('#show_sms_table tbody tr:eq(' + (rowIndex + 1) + ')');
+                    nextRow.css('margin-top', '');
+                } else {
+                    // Open this row and apply CSS properties using inline styles
+                    row.child(format(row.data())).show();
+                    tr.addClass('shown');
+                    // Add CSS properties to the opened row using inline styles
+
+
+                    // Set the top margin for the following row
+                    let nextRow = $('#show_sms_table tbody tr:eq(' + (rowIndex + 1) + ')');
+                    nextRow.css('margin-top', '3em');
                 }
-            } );
+            });
+
+
+
 
 
             $('#show_sms_table tbody').on('click', 'td.ptN', function () {
-                var tr = $(this).closest('tr');
-                var row = oTable.row( tr );
-                var data = oTable.row( $(this).parents('tr') ).data();
-                var next = this.className;
-
-                var newpid =data['pid'];
-
-                if (newpid.length===0)
-                {
+                console.log("Clicked on the name!");
+                let tr = $(this).closest('tr');
+                let data = oTable.row(tr).data();
+                console.log(data);
+                if (!data || typeof data !== 'object' || !data['pid']) {
+                    console.error('Invalid data for PID.');
                     return;
                 }
+
+                let newpid = data['pid'];
+
+                if (newpid.length === 0) {
+                    return;
+                }
+
+                // Update your condition here to control the behavior
                 if (0) {
                     openNewTopWindow(newpid);
-                }
-                else {
+                } else {
                     top.restoreSession();
                     top.RTop.location = "<?php echo $GLOBALS['webroot']; ?>/interface/patient_file/summary/demographics.php?set_pid=" + newpid;
                     top.left_nav.closeErx();
                 }
-
-
-            } );
+            });
+;
 
             function openNewTopWindow(pid) {
                 document.fnew.patientID.value = pid;
@@ -382,7 +364,20 @@ $pid = $_POST['pid'] ?? null;
                 document.fnew.submit();
             }
 
+            $('.call_button').on('click', '' , function () {
+                    alert("Pressing this button will update the call history");
 
+            } );
+
+            $('.save_button').on('click', '' , function () {
+                alert("Pressing this button will update patient record with new info");
+
+            } );
+
+            $('.undo_button').on('click', '' , function () {
+                alert("Unsure if we want this button.  There is probably a better solutions");
+
+            } );
 
 
         });
@@ -400,41 +395,7 @@ $pid = $_POST['pid'] ?? null;
 
         <form name="theform" id="theform" method="post" action="./recruitment_call_list.php" onsubmit="return top.restoreSession()">
             <div id="report_parameters" class="grid-form">
-                <!-- First Row Appointments -->
-                <div class="grid-item">
-                    <span class="grid-title"><?php xl('Appointments','e'); ?>:</span>
-                </div>
-                <div class="grid-item">
-                    <input type='text' name='form_from_date' id='form_from_date'
-                           class="form_date" value='<?php echo $form_from_date ?>' placeholder="From" >
-                    <input type='text' name='form_to_date' id='form_to_date'
-                           class="form_date" value='<?php echo $form_to_date ?>' placeholder="To">
-                </div>
-                <div class="grid-item">
-
-                </div>
-                <div class="grid-item">
-                    <button type="button" class="clear-button" id="clear_app">Clear</button>
-                </div>
-
-                <!-- Second Row Date Message Sent -->
-                <div class="grid-item">
-                    <span class="grid-title"><?php xl('Message Sent','e'); ?></span>
-                </div>
-                <div class="grid-item">
-                    <input type='text' name='form_from_date_sent' id='form_from_date_sent' class="form_date"
-                           value='<?php echo $form_from_date_sent ?>' placeholder="From" >
-                    <input type='text' name='form_to_date_sent' id='form_to_date_sent' class="form_date"
-                           value='<?php echo $form_to_date_sent ?>' placeholder="To">
-                </div>
-                <div class="grid-item">
-
-                </div>
-                <div class="grid-item">
-                    <button type="button" style="padding: 4px 10px;" align="left"  id="clear_sent"> Clear </button>
-                </div>
-
-                <!-- Third Row Patient Name-->
+            <!-- First Row Patient Name-->
                 <div class="grid-item">
                     <span class="grid-title"><?php xl('Name','e'); ?>:</span>
                 </div>
@@ -448,7 +409,7 @@ $pid = $_POST['pid'] ?? null;
                     <button type="button" style="padding: 4px 10px;" align="left"  id="clear_name"> Clear </button>
                 </div>
 
-                <!-- Fourth Row -->
+                <!-- Second Row - PID and Cellphone -->
                 <div class="grid-item">
                     <span class="grid-title"><?php xl('PID','e'); ?>:</span>
                 </div>
@@ -465,19 +426,20 @@ $pid = $_POST['pid'] ?? null;
                     <button type="button" style="padding: 4px 10px;" align="left"  id="clear_pid"> Clear </button>
                 </div>
 
-                <!-- Fifth Row -->
+                <!-- Third Row -->
 
                 <div class="grid-item">
                     <input value="<?php echo htmlspecialchars(xl('Submit')) ?> " type="submit" id="submit_selector" name="sms_submit" ><?php ?>
                     <input hidden id = 'submit_button' value = '<?php $_POST['sms_submit']  ?? '' ?>'>
                 </div>
                 <div class="grid-item">
-                    <button type="button" class="clear-form-button" id="clear">Clear Form</button>
+
                 </div>
                 <div class="grid-item">
+
                 </div>
                 <div class="grid-item">
-                    <button type="button" class="send-unsent-button" id="send_sms">Send Unsent</button>
+
                 </div>
             </div>
         </form>
@@ -517,27 +479,7 @@ $pid = $_POST['pid'] ?? null;
 
 <script>
     $(document).ready(function() {
-        $("#form_from_date").datetimepicker({
-            timepicker: false,
-            format: "Y-m-d"
 
-        });
-        $("#form_to_date").datetimepicker({
-            timepicker: false,
-            format: "Y-m-d"
-        });
-
-        $("#form_from_date_sent").datetimepicker({
-            timepicker: false,
-            format: "Y-m-d"
-
-        });
-
-        $("#form_to_date_sent").datetimepicker({
-            timepicker: false,
-            format: "Y-m-d"
-
-        });
 
         $("#clear").on('click', function(){
 
@@ -550,7 +492,7 @@ $pid = $_POST['pid'] ?? null;
 
         $("#clear_app, #clear_name, #clear_pid, #clear_sent").on('click', function(){
 
-            var id = this.id;
+            let id = this.id;
             if (id == "clear_app"){
                 $('#form_from_date').val('');
                 $('#form_to_date').val('');

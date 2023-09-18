@@ -85,7 +85,7 @@ form {
 .grid-form {
     display: grid;
     grid-template-columns: 10em repeat(3, 1fr); /* 5 columns */
-    grid-template-rows: repeat(5, auto); /* 5 rows */
+    grid-template-rows: repeat(2, auto); /* 5 rows */
     grid-row-gap: 5px; /* Gap between grid items */
     grid-column-gap: 0px;
 }
@@ -159,4 +159,79 @@ input[type="date"] {
 .form_pid{
     width:10em;
     margin-left:1em!important;
+}
+
+.ptinfo{
+    display: grid;
+    grid-template-columns: 5em repeat(7, 1fr); /* 8 columns */
+    grid-template-rows: repeat(2, auto); /* 2 rows */
+    grid-row-gap: 5px; /* Gap between grid items */
+    grid-column-gap: 0px;
+    color:blue;
+    background-color: #ded0d0;
+    margin-bottom: 3em;
+}
+
+.ptCallHist{
+    display: grid;
+    grid-template-columns: auto auto auto auto; /* 2 columns */
+    grid-template-rows: auto; /* Single row */
+    grid-column: 2 / span 2; /* Start at the second column, span two columns */
+    border: 1px solid #000; /* Add a border to the sub-grid (grid lines) */
+    margin-top: 10px; /* Adjust the margin as needed */
+}
+
+.ptQual{
+    display: grid;
+    grid-template-columns: auto;
+    grid-column: 4/ span 2; /* Start at the second column, span two columns */
+    border: 1px solid #000; /* Add a border to the sub-grid (grid lines) */
+    margin-top: 10px; /* Adjust the margin as needed */
+    margin-left: 5em;
+}
+
+.ptNotes{
+    display: grid;
+    grid-template-columns: auto;
+    grid-column: 6/ span 3; /* Start at the second column, span two columns */
+    border: 1px solid #000; /* Add a border to the sub-grid (grid lines) */
+    margin-top: 10px; /* Adjust the margin as needed */
+    margin-left: 5em;
+
+}
+
+.shown{
+    background-color: #ded0d0!important;
+    font-weight:bold;
+
+}
+
+.call-button {
+    padding: 4px 10px;
+    /* Add more styles as needed */
+}
+
+.dropdown-label {
+    /* Add styles for dropdown labels */
+}
+
+#callStatus {
+    grid-row: 2; /* Place in the second row */
+    grid-column: 2; /* Place in the second column */}
+
+.save-button {
+    padding: 4px 10px;
+    /* Add more styles as needed */
+}
+
+.undo-button {
+    padding: 4px 10px;
+    /* Add more styles as needed */
+}
+.odd-row {
+    background-color: lightgray; /* Style for odd rows */
+}
+
+.even-row {
+    background-color: white; /* Style for even rows */
 }

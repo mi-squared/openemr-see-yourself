@@ -74,7 +74,7 @@ $from_date = isset($_POST['from_date']) ? fixDate($_POST['from_date']) : fixDate
 $to_date = isset($_POST['to_date']) ? fixDate($_POST['to_date']) : fixDate(date($DateFormat));
 
 if($_POST['func'] === "show_list"){
-    $query = "SELECT 'TBD' as lastUpdated, pd.pid as pid, concat(lname, ', ', fname) as full_name, pd.phone_cell from patient_data pd where 1";
+    $query = "SELECT date as lastUpdated, pd.pid as pid, concat(lname, ', ', fname) as full_name, pd.phone_cell from patient_data pd where 1";
 
     $res = sqlStatement($query);
     while($row = sqlFetchArray($res)){
