@@ -414,7 +414,7 @@ class PatientController extends AppBasePortalController
             $audit = array ();
             $audit['patient_id'] = $ja['pid'];
             $audit['activity'] = "profile";
-            $audit['require_audit'] = "1";
+            $audit['require_audit'] = "0";
             $audit['pending_action'] = "completed";
             $audit['action_taken'] = "accept";
             $audit['status'] = "closed";

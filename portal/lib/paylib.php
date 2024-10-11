@@ -179,7 +179,7 @@ function SaveAudit($pid, $amts, $cc)
         $audit = array();
         $audit['patient_id'] = $pid;
         $audit['activity'] = "payment";
-        $audit['require_audit'] = "1";
+        $audit['require_audit'] = "0";
         $audit['pending_action'] = "review";
         $audit['action_taken'] = "";
         $audit['status'] = "waiting";
@@ -212,7 +212,7 @@ function CloseAudit($pid, $amts, $cc, $action = 'payment posted', $paction = 'no
         $audit = array();
         $audit['patient_id'] = $pid;
         $audit['activity'] = "payment";
-        $audit['require_audit'] = "1";
+        $audit['require_audit'] = "0";
         $audit['pending_action'] = $paction;//'review';//
         $audit['action_taken'] = $action;
         $audit['status'] = "closed";//'waiting';
