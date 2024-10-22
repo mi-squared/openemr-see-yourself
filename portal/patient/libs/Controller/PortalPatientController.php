@@ -237,7 +237,7 @@ class PortalPatientController extends AppBasePortalController
             $audit['patient_id'] = $ja['pid'];
             $audit['activity'] = "profile";
             $audit['require_audit'] = "0";
-            $audit['pending_action'] = "review";
+            $audit['pending_action'] = "patient submission";
             $audit['action_taken'] = "";
             $audit['status'] = "waiting";
             $audit['narrative'] = "Patient request changes to demographics.";

@@ -151,7 +151,7 @@ class ApplicationTable
 
         $audit['patient_id'] = $auditvals['patient_id'] ? $auditvals['patient_id'] : $_SESSION['pid'];
         $audit['activity'] = $auditvals['activity'] ? $auditvals['activity'] : "";
-        $audit['require_audit'] = $auditvals['require_audit'] ? $auditvals['require_audit'] : "";
+        $audit['require_audit'] = 0;
         $audit['pending_action'] = $auditvals['pending_action'] ? $auditvals['pending_action'] : "";
         $audit['action_taken'] = $auditvals['action_taken'] ? $auditvals['action_taken'] : "";
         $audit['status'] = $auditvals['status'] ? $auditvals['status'] : "new";
@@ -174,7 +174,7 @@ class ApplicationTable
                             "table_action, table_args, action_user, action_taken_time, checksum) " .
                                 "VALUES (NOW(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             } else {
-                $logsql = "update onsite_portal_activity set date=?, patient_id=?, activity=?, require_audit=?," .
+                $logsql = "update onsite_portal_activity set date=?, patient_id=?, activity=?, qrequire_audit=?," .
                         "            pending_action=?, action_taken=?,status=?, narrative=?, table_action=?, table_args=?," .
                                         "action_user=?, action_taken_time=?, checksum=? ";
                 $logsql .= "where id='" . add_escape_custom($rec) . "' And patient_id='" . add_escape_custom($audit['patient_id']) . "'";

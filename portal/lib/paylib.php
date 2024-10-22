@@ -180,7 +180,7 @@ function SaveAudit($pid, $amts, $cc)
         $audit['patient_id'] = $pid;
         $audit['activity'] = "payment";
         $audit['require_audit'] = "0";
-        $audit['pending_action'] = "review";
+        $audit['pending_action'] = "patient submission";
         $audit['action_taken'] = "";
         $audit['status'] = "waiting";
         $audit['narrative'] = "Authorize online payment.";
